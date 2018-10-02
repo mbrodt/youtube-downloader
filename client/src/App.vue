@@ -33,7 +33,7 @@ export default {
   mounted() {},
   methods: {
     getVideos() {
-      const API_KEY = "AIzaSyAEYCQyeKeunzenUdp8nioxdUp26yAjl6A"
+      const API_KEY = process.env.VUE_APP_YOUTUBE_API_KEY
       fetch(
         `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=30&q=${
           this.searchInput
