@@ -1,0 +1,14 @@
+GET http://localhost:3000/ HTTP/1.1
+
+###
+
+POST http://localhost:3000/download HTTP/1.1
+content-type: application/json
+
+{
+    "songs": [
+                {
+            "url": "https://www.youtube.com/watch?v=ytc1bQtFi7s"
+        }
+    ]
+}
