@@ -1,24 +1,13 @@
-1. Get input from user
+TODO
 
-   - Store input in data with v-model
+1. Download as zip or make the default download name the title of the song
 
-1. Get data from Youtube
+1. Load more songs
 
-   - Send request to youtube API to retrieve:
-     - URL
-     - Thumbnail
-     - Title
-     - Description
+1. Load popular by default
 
-1. Create card to display data
+1. Do something with thumbnails when titles make song cards stretch
 
-   - Add to DL list button
+1. Proper spinner when downloading
 
-1. Downloads array
-
-   - Add song
-   - Remove song
-   - Download
-
-1. Download
-   - Backend ??
+1. Deploy

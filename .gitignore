@@ -1,5 +1,7 @@
-# Downloaded sonds
+# Downloaded songs
 downloads
+
+.env
 
 .DS_Store
 node_modules
