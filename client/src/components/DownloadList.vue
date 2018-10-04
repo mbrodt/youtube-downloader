@@ -3,7 +3,7 @@
     <div class="max-w-md mx-auto flex justify-between items-center m-4">
       <p class="text-2xl">{{songsInList}} {{songsInList === 1 ? 'song' : 'songs'}} ready for download</p>
       <div>
-        <button @click.stop="downloadAll" type="button" class="rounded bg-orange font-bold leading-normal text-white py-2 px-5 ">Download All</button>
+        <button @click.stop="downloadAll" type="button" class="rounded bg-orange font-bold leading-normal text-white py-2 px-5" :class="{'opacity-50 cursor-not-allowed': disableButton}" :disabled="disableButton">Download All</button>
       </div>
     </div>
     <ul v-show="showSongs" class="max-w-md mx-auto list-reset text-left">
@@ -18,7 +18,7 @@
 <script>
 import axios from "axios"
 export default {
-  props: ["toDownload"],
+  props: ["toDownload", "isDownloading"],
   data() {
     return {
       showSongs: false
@@ -27,6 +27,9 @@ export default {
   computed: {
     songsInList() {
       return this.toDownload.length
+    },
+    disableButton() {
+      return this.isDownloading || this.songsInList === 0
     }
   },
   methods: {
@@ -36,12 +39,16 @@ export default {
       this.showSongs = !this.showSongs
     },
     downloadAll() {
+      this.$emit("start-download")
       // console.log("download")
       // axios.get("http://localhost:3000").then(res => console.log("res", res))
       let songs = this.toDownload
       axios
         .post("http://localhost:3000/download", songs)
-        .then(res => console.log("response", res))
+        .then(res => {
+          console.log("response", res)
+          this.$emit("got-urls", res.data)
+        })
         .catch(err => console.log("error", err))
     },
     removeSong(song) {
