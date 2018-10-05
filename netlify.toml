@@ -2,4 +2,4 @@
 [build]
    base    = "client"        # run the build from this directory
    command = "npm run build"
-   publish = "dist"      # the output diretory to push to the CDN after the build
+   publish = "client/dist"      # the output diretory to push to the CDN after the build
