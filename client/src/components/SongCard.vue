@@ -8,14 +8,14 @@
             <ul class="list-reset flex justify-around">
                 <li class="inline-block bg-grey-lighter rounded-full px-6 py-2 text-sm font-semibold text-grey-darker" v-for="tag in song.tags" :key="tag">{{tag}}</li>
             </ul>
-            <button @click="addToDownloads" class="bg-orange rounded text-white m-4 h-12">Add to Downloads</button>
+            <button @click="addToDownloads" class="bg-orange rounded text-white m-4 h-12" :class="{'opacity-50 cursor-not-allowed': disableButton}">Add to Downloads</button>
         </div>
     </div>
 </template>
 
 <script>
 export default {
-  props: ["song"],
+  props: ["song", "disableButton"],
   methods: {
     addToDownloads() {
       console.log("clicked")

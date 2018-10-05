@@ -1,12 +1,12 @@
 <template>
   <div id="app" class="font-sans text-black text-center min-h-screen bg-grey-darkest flex justify-center  bg-grey-darkest">
     <div class="flex flex-col mx-auto items-center mt-32">
-      <input autofocus v-model="searchInput" @keyup.enter="getVideos" class="rounded bg-grey w-64 p-4 text-2xl" />
+      <input autofocus v-model="searchInput" @keyup.enter="getVideos" class="rounded bg-grey text-white w-64 p-4 text-2xl" />
       <button @click="getVideos" class="rounded border-4 border-orange p-4 text-white text-xl my-4 hover:bg-orange"> Get videos </button>
-      <h2 v-if="isDownloading">DOWNLOADING!!</h2>
+      <h2 v-if="isDownloading" class="text-white">DOWNLOADING!!</h2>
       <div>
         <ul class="list-reset grid-container">
-          <song-card @add="addToDownloads" v-for="song in fetchedVideos" :key="song.title" :song="song"></song-card>
+          <song-card @add="addToDownloads" v-for="song in fetchedVideos" :key="song.title" :song="song" :disableButton="getIndex(song) >= 0"></song-card>
         </ul>
       </div>
     </div>
