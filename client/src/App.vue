@@ -17,6 +17,7 @@
 <script>
 import SongCard from "./components/SongCard"
 import DownloadList from "./components/DownloadList"
+
 export default {
   name: "app",
   components: {
@@ -34,8 +35,8 @@ export default {
   mounted() {},
   methods: {
     getVideos() {
-      // const API_KEY = process.env.VUE_APP_YOUTUBE_API_KEY
-      const API_KEY = "AIzaSyAEYCQyeKeunzenUdp8nioxdUp26yAjl6A"
+      const API_KEY = process.env.VUE_APP_YOUTUBE_API_KEY
+      console.log("process.env", process.env)
       fetch(
         `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=30&q=${
           this.searchInput
@@ -46,16 +47,12 @@ export default {
           let items = json.items
           console.log("items", items)
           let newarr = items.map(item => {
-            let url = `https://www.youtube.com/watch?v=${item.id.videoId}`
             let snippet = item.snippet
-            let title = snippet.title
-            let thumbnail = snippet.thumbnails.medium.url
-            let published = snippet.publishedAt
             return {
-              url,
-              title,
-              thumbnail,
-              published
+              url: `https://www.youtube.com/watch?v=${item.id.videoId}`,
+              title: snippet.title,
+              thumbnail: snippet.thumbnails.medium.url,
+              published: snippet.publishedAt
             }
           })
           this.fetchedVideos = newarr

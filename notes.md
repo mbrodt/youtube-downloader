@@ -10,4 +10,4 @@ TODO
 
 1. Proper spinner when downloading
 
-1. Deploy
+1. Deploy server function to Netlify functions
